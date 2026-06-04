@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Andrew Truong — Selected Work</title>
-<meta name="description" content="Andrew Truong — designer-engineer shipping autonomous AI systems. Boulder → Los Angeles → Austin." />
+<meta name="description" content="Andrew Truong — selected work. Practical software across cloud infrastructure, AI-assisted tools, workflow apps, and data pipelines. Boulder → Los Angeles → Austin." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..650;1,9..144,400..600&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600&display=swap" rel="stylesheet">
@@ -47,6 +47,11 @@
 
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px); }
 
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
   .mono { font-family: var(--mono); }
   .eyebrow {
     font-family: var(--mono); font-size: 12px; font-weight: 500;
@@ -79,21 +84,13 @@
   nav.social a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   /* ---------- Hero ---------- */
-  header.hero { padding: clamp(48px, 9vw, 96px) 0 clamp(30px, 5vw, 48px); }
-  .hero .eyebrow { display: block; margin-bottom: 22px; }
-  h1.headline {
-    font-family: var(--display); font-optical-sizing: auto;
-    font-weight: 560; font-size: clamp(40px, 8.2vw, 92px);
-    line-height: .98; letter-spacing: -.025em;
-    margin: 0; max-width: 16ch;
-    text-wrap: balance;
-  }
-  h1.headline em {
-    font-style: italic; font-weight: 500; color: var(--accent);
-  }
+  header.hero { padding: clamp(40px, 7vw, 76px) 0 clamp(28px, 5vw, 44px); }
+  .hero .eyebrow { display: block; margin-bottom: 20px; }
   .lede {
-    margin: 30px 0 0; max-width: 56ch;
-    font-size: clamp(16px, 1.6vw, 19px); color: var(--ink-soft); line-height: 1.62;
+    margin: 0; max-width: 64ch;
+    font-family: var(--display); font-optical-sizing: auto; font-weight: 380;
+    font-size: clamp(20px, 2.4vw, 30px); color: var(--ink); line-height: 1.42;
+    letter-spacing: -.01em; text-wrap: pretty;
   }
 
   /* ---------- Route / journey ---------- */
@@ -178,73 +175,87 @@
     color: var(--ink-dim); font-variant-numeric: tabular-nums;
   }
 
-  /* ---------- Project grid ---------- */
+  /* ---------- Project grid · old dark cards ---------- */
   .grid {
-    display: grid; gap: clamp(36px, 5vw, 60px) clamp(30px, 4vw, 52px);
-    grid-template-columns: repeat(2, 1fr);
-    padding: clamp(44px, 6vw, 72px) 0 40px;
+    /* dark palette scoped to the cards so they keep the original look on cream */
+    --card: #181b22; --card-hover: #1d212a; --line: #262b35;
+    --ink: #eef1f6; --ink-soft: #aab2c0; --ink-dim: #6f7889;
+    --accent: #7c8cff; --accent-2: #54e6c1; --bg-soft: #15181f;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 30px -12px rgba(0,0,0,.55);
+
+    display: grid; gap: 22px;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    padding: clamp(40px, 6vw, 64px) 0 56px;
   }
-  .entry { display: flex; flex-direction: column; }
-  .entry-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 12px; margin-bottom: 16px;
-    padding-bottom: 12px; border-bottom: 1px solid var(--ink);
+
+  .card {
+    display: flex; flex-direction: column;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
   }
-  .entry-head .num {
-    font-family: var(--display); font-weight: 500; font-size: 15px;
-    color: var(--ink); letter-spacing: .04em; font-variant-numeric: tabular-nums;
+  .grid .card:hover {
+    transform: translateY(-4px);
+    border-color: #353c4a; background: var(--card-hover); box-shadow: var(--shadow);
   }
-  .entry-head .num::before { content: "↳ index "; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-dim); }
-  .status {
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
-    text-transform: uppercase; color: var(--ink-soft); white-space: nowrap;
-  }
-  .status::before {
-    content: "●"; margin-right: 5px; font-size: 9px; vertical-align: 1px;
-  }
-  .status.live::before { color: var(--live); }
-  .status.wip::before { color: var(--accent); }
 
   .thumb {
-    display: block; aspect-ratio: 16 / 10; overflow: hidden;
-    border: 1px solid var(--ink); background: var(--paper-2);
-    position: relative;
+    height: 176px; position: relative; display: grid; place-items: center;
+    border-bottom: 1px solid var(--line); overflow: hidden;
   }
   .thumb img {
-    width: 100%; height: 100%; object-fit: cover; object-position: top center;
-    display: block; filter: saturate(1.02);
-    transition: transform .5s cubic-bezier(.2,.6,.2,1);
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: top center; display: block;
+    transition: transform .3s ease;
   }
-  .entry:hover .thumb img { transform: scale(1.035); }
-  .thumb .fallback {
-    position: absolute; inset: 0; display: grid; place-items: center;
-    font-family: var(--display); font-size: 44px; color: var(--ink-dim);
+  .grid .card:hover .thumb img { transform: scale(1.03); }
+  .thumb .glyph {
+    font-family: var(--display); font-size: 40px; font-weight: 800; letter-spacing: -.02em;
+    color: rgba(255,255,255,.92); mix-blend-mode: overlay;
+  }
+  .thumb .emoji { font-size: 44px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.35)); }
+
+  .status {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    font-family: var(--mono); font-size: 11.5px; font-weight: 700;
+    letter-spacing: .03em; text-transform: uppercase;
+    padding: 5px 9px; border-radius: 999px;
+    background: rgba(15,17,21,.72); backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,.16); color: #fff;
+  }
+  .status.live::before { content: "● "; color: #1fd17a; }
+  .status.wip::before  { content: "● "; color: #ffcf5c; }
+
+  .body { padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .card h3 { margin: 0; font-family: var(--display); font-size: 19px; letter-spacing: -.01em; font-weight: 700; color: var(--ink); }
+  .blurb { margin: 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .tech {
+    font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--ink-soft);
+    border: 1px solid var(--line); background: var(--bg-soft);
+    padding: 4px 9px; border-radius: 7px;
   }
 
-  .entry-title {
-    font-family: var(--display); font-optical-sizing: auto;
-    font-weight: 560; font-size: clamp(21px, 2.3vw, 27px); letter-spacing: -.015em;
-    line-height: 1.08; margin: 20px 0 0;
+  .actions { display: flex; gap: 10px; margin-top: auto; padding-top: 6px; }
+  .btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 10px 12px; border-radius: 10px; font-family: var(--sans);
+    font-size: 14px; font-weight: 650;
+    border: 1px solid var(--line); transition: .16s ease; cursor: pointer;
   }
-  .entry-title a { background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .25s ease; }
-  .entry:hover .entry-title a, .entry-title a:hover { background-size: 100% 1.5px; }
-  .entry-blurb { margin: 12px 0 0; color: var(--ink-soft); font-size: 14.5px; line-height: 1.58; max-width: 46ch; }
-
-  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 18px 0 0; padding: 0; }
-  .tags li { font-family: var(--mono); font-size: 11px; color: var(--ink-dim); letter-spacing: .02em; }
-  .tags li::before { content: "/ "; color: var(--line); }
-
-  .acts { display: flex; flex-wrap: wrap; gap: 18px; margin: 20px 0 0; padding-top: 16px; border-top: 1px solid var(--line); }
-  .act {
-    font-family: var(--mono); font-size: 12.5px; font-weight: 500; color: var(--ink);
-    display: inline-flex; align-items: center; gap: 6px; transition: color .15s;
-  }
-  .act .arr { transition: transform .2s ease; color: var(--ink-dim); }
-  .act:hover { color: var(--accent); }
-  .act:hover .arr { transform: translate(2px, -2px); color: var(--accent); }
-  .act:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .act.muted { color: var(--ink-dim); cursor: default; }
-  .act.video { color: var(--accent); }
+  .btn svg { width: 16px; height: 16px; }
+  .btn.primary { background: linear-gradient(100deg, var(--accent), var(--accent-2)); color: #0f1115; border-color: transparent; }
+  .btn.primary:hover { filter: brightness(1.07); }
+  .btn.ghost { background: transparent; color: var(--ink-soft); }
+  .btn.ghost:hover { color: var(--ink); border-color: #3a4150; background: var(--bg-soft); }
+  .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+  .btn.icon-only { flex: 0 0 auto; width: 44px; padding: 10px; }
+  .btn.icon-only svg { width: 18px; height: 18px; }
+  .btn.ghost.icon-only { color: #ff5c5c; }
+  .btn.ghost.icon-only:hover { color: #ff7a7a; border-color: rgba(255,92,92,.4); background: rgba(255,92,92,.08); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
   .empty { grid-column: 1 / -1; text-align: center; color: var(--ink-dim); font-family: var(--mono); padding: 60px 0; }
 
@@ -275,9 +286,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    * { scroll-behavior: auto; }
-    .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
-    .thumb img, .act .arr, .entry-title a { transition: none; }
+    * { scroll-behavior: auto; transition: none !important; }
+    .reveal, .reveal.in { opacity: 1; transform: none; }
+    .grid .card:hover, .grid .card:hover .thumb img { transform: none; }
   }
 </style>
 </head>
@@ -298,9 +309,9 @@
     </div>
 
     <header class="hero">
+      <h1 class="sr-only">Andrew Truong — Selected Work</h1>
       <span class="eyebrow">Selected work · 2026 · Austin, TX</span>
-      <h1 class="headline">I build <em>AI&nbsp;agents</em> that do real work.</h1>
-      <p class="lede">Designer-engineer shipping autonomous AI systems — clinical copilots, security red-teams, real-estate agents — from first prototype to production, sweating the details that make them hold up.</p>
+      <p class="lede">My background spans building practical software across cloud infrastructure, AI-assisted tools, workflow applications, and data pipelines. I’ve worked on deployment automation at IBM, an AI prototyping platform at Festo, registrar workflow apps at CU Boulder, and research data automation at USC. I’m interested in building reliable systems that make complex data and workflows easier to use.</p>
     </header>
 
     <section class="route" aria-label="Education and experience">
@@ -346,7 +357,7 @@
     </main>
 
     <footer class="site">
-      <span>© <span id="year"></span> Andrew Truong — built from scratch.</span>
+      <span>© <span id="year"></span> Andrew Truong</span>
       <span class="sig">Boulder → Los Angeles → Austin</span>
     </footer>
   </div>
@@ -355,18 +366,21 @@
 /* ============================================================
    EDIT HERE — add your projects.
    - name      : project title
-   - image     : thumbnail path under thumbs/ (or "" for a lettered fallback)
+   - image     : thumbnail path under thumbs/ (or "" for an emoji/lettered fallback)
+   - accent    : two CSS colors for the thumbnail gradient backdrop
+   - emoji     : optional emoji shown when there's no image
    - blurb     : NON-technical, one-or-two sentence overview
    - tech      : array of tech-stack labels (these also build the filter)
-   - liveUrl   : deployed URL (omit or "" to show "No live demo")
-   - repoUrl   : source repo URL (omit or "" to show "Private")
-   - videoUrl  : YouTube demo URL (omit or "" to hide the Video link)
+   - liveUrl   : deployed URL (omit or "" to disable the button)
+   - repoUrl   : source repo URL (omit or "" to disable the button)
+   - videoUrl  : YouTube demo URL (omit or "" to hide the video button)
    - status    : "live" | "wip"  (optional)
    ============================================================ */
 const projects = [
   {
     name: "AgentForge",
     image: "thumbs/agentforge.png",
+    accent: ["#7c8cff", "#54e6c1"],
     blurb: "An automated security red-team for medical AI. Four AI agents work together to relentlessly attack a clinical assistant, judge what slips through, document each weakness, and re-check old fixes — surfacing real vulnerabilities before an attacker would.",
     tech: ["Python", "FastAPI", "LangGraph", "Claude", "GPT-4o", "Postgres", "Redis", "Docker"],
     liveUrl: "https://agentforge-production-790f.up.railway.app/dashboard",
@@ -377,6 +391,7 @@ const projects = [
   {
     name: "Clinical Co-Pilot for OpenEMR",
     image: "thumbs/openemr.png",
+    accent: ["#54a0ff", "#7c8cff"],
     blurb: "An AI assistant built directly into a doctor's electronic health-record system. It answers questions about the patient in front of them in seconds, and cites every statement back to the real chart so it can't make things up.",
     tech: ["PHP", "Python", "FastAPI", "LangGraph", "Claude", "FHIR", "Docker"],
     liveUrl: "https://openemr-production-6c45.up.railway.app/",
@@ -387,6 +402,7 @@ const projects = [
   {
     name: "Opendoor Agent",
     image: "thumbs/opendoor.png",
+    accent: ["#54e6c1", "#7c8cff"],
     blurb: "An autonomous real-estate agent that carries a home buyer from their first message all the way to a structured offer — with fair-housing rules enforced automatically and a required human sign-off on anything legal or financial.",
     tech: ["Python", "FastAPI", "React", "TypeScript", "Claude", "Docker"],
     liveUrl: "https://opendoor-agent-production.up.railway.app/",
@@ -396,6 +412,7 @@ const projects = [
   {
     name: "Churn Intervention Agent",
     image: "thumbs/churn.png",
+    accent: ["#ff7c9c", "#ffcf5c"],
     blurb: "Finds the subscribers most likely to cancel and acts before they do — automatically sending personalized check-ins and retention offers, while escalating the highest-stakes accounts to a human for approval.",
     tech: ["Python", "LightGBM", "Claude", "Snowflake", "Prefect", "FastAPI", "Docker"],
     liveUrl: "https://retention-ops-console-production.up.railway.app/ui",
@@ -406,6 +423,7 @@ const projects = [
   {
     name: "Weekly Commit Module",
     image: "thumbs/weekly-commit.png",
+    accent: ["#ffcf5c", "#54e6c1"],
     blurb: "A planning tool that links each person's weekly commitments to the company's top-level goals. Employees plan, lock, and reconcile their week while managers see how everyone's work ladders up to the bigger strategy.",
     tech: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],
     liveUrl: "https://weekly-commit-production-6633.up.railway.app",
@@ -416,6 +434,7 @@ const projects = [
   {
     name: "Fruit Slayer — Fraction Dojo",
     image: "thumbs/fruit-slayer.png",
+    accent: ["#ff9f43", "#ffcf5c"],
     blurb: "A Fruit-Ninja-style math game that makes fractions click. Kids swipe to slice fruit while a friendly Sensei shows them why two quarter-pieces take up exactly the same space as one half.",
     tech: ["React", "TypeScript", "Vite", "Tailwind", "Docker"],
     liveUrl: "https://fruit-slayer-fraction-dojo-production.up.railway.app",
@@ -425,6 +444,7 @@ const projects = [
   {
     name: "Credal Onboarding Assistant",
     image: "thumbs/onboarding.png",
+    accent: ["#7c8cff", "#54a0ff"],
     blurb: "A polished, clickable walkthrough for setting up AI-agent governance: a guided seven-step flow where an admin sorts agent actions by risk, turns policy documents into rules, and configures human approvals.",
     tech: ["React", "TypeScript", "Vite"],
     liveUrl: "",
@@ -439,6 +459,10 @@ const countEl = document.getElementById("count");
 let activeTech = "All";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+const linkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+const codeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>';
+const ytIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>';
 
 function allTech() {
   const set = new Set();
@@ -460,38 +484,40 @@ function renderFilters() {
 }
 
 function card(p, i) {
-  const num = String(i + 1).padStart(2, "0");
   const initial = esc((p.name || "?").trim().charAt(0).toUpperCase());
-  const href = p.liveUrl || p.repoUrl || "#";
+  const [c1, c2] = p.accent || ["#7c8cff", "#54e6c1"];
   const thumbInner = p.image
-    ? `<img src="${esc(p.image)}" alt="${esc(p.name)} — interface screenshot" loading="lazy" />`
-    : `<span class="fallback" aria-hidden="true">${initial}</span>`;
-  const status = p.status
+    ? `<img src="${esc(p.image)}" alt="${esc(p.name)} — screenshot" loading="lazy" />`
+    : p.emoji
+      ? `<span class="emoji" aria-hidden="true">${esc(p.emoji)}</span>`
+      : `<span class="glyph" aria-hidden="true">${initial}</span>`;
+  const statusBadge = p.status
     ? `<span class="status ${p.status === "live" ? "live" : "wip"}">${p.status === "live" ? "Live" : "In progress"}</span>`
     : "";
-  const tags = (p.tech || []).map(t => `<li>${esc(t)}</li>`).join("");
+  const stack = (p.tech || []).map(t => `<span class="tech">${esc(t)}</span>`).join("");
 
   const live = p.liveUrl
-    ? `<a class="act" href="${esc(p.liveUrl)}" target="_blank" rel="noopener">Live demo <span class="arr" aria-hidden="true">↗</span></a>`
-    : `<span class="act muted">No live demo</span>`;
+    ? `<a class="btn primary" href="${esc(p.liveUrl)}" target="_blank" rel="noopener">${linkIcon} Live demo</a>`
+    : `<span class="btn primary" aria-disabled="true">${linkIcon} No demo</span>`;
   const repo = p.repoUrl
-    ? `<a class="act" href="${esc(p.repoUrl)}" target="_blank" rel="noopener">Source <span class="arr" aria-hidden="true">↗</span></a>`
-    : `<span class="act muted">Private</span>`;
+    ? `<a class="btn ghost" href="${esc(p.repoUrl)}" target="_blank" rel="noopener">${codeIcon} Source</a>`
+    : `<span class="btn ghost" aria-disabled="true">${codeIcon} Private</span>`;
   const video = p.videoUrl
-    ? `<a class="act video" href="${esc(p.videoUrl)}" target="_blank" rel="noopener">Watch demo <span class="arr" aria-hidden="true">↗</span></a>`
+    ? `<a class="btn ghost icon-only" href="${esc(p.videoUrl)}" target="_blank" rel="noopener" title="Watch demo video" aria-label="Watch ${esc(p.name)} demo video on YouTube">${ytIcon}</a>`
     : "";
 
   return `
-    <article class="entry reveal" style="--d:${(i % 2) * 90 + Math.floor(i / 2) * 60}ms">
-      <div class="entry-head">
-        <span class="num">${num} / ${String(projects.length).padStart(2, "0")}</span>
-        ${status}
+    <article class="card reveal" style="--d:${Math.min(i, 9) * 60}ms">
+      <div class="thumb" style="background:linear-gradient(135deg, ${esc(c1)}, ${esc(c2)})">
+        ${thumbInner}
+        ${statusBadge}
       </div>
-      <a class="thumb" href="${esc(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""} aria-label="${esc(p.name)}">${thumbInner}</a>
-      <h3 class="entry-title"><a href="${esc(href)}" ${href !== "#" ? 'target="_blank" rel="noopener"' : ""}>${esc(p.name)}</a></h3>
-      <p class="entry-blurb">${esc(p.blurb || "")}</p>
-      <ul class="tags">${tags}</ul>
-      <div class="acts">${live}${repo}${video}</div>
+      <div class="body">
+        <h3>${esc(p.name)}</h3>
+        <p class="blurb">${esc(p.blurb || "")}</p>
+        <div class="stack">${stack}</div>
+        <div class="actions">${live}${repo}${video}</div>
+      </div>
     </article>`;
 }
 
