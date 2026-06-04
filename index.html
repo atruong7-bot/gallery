@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Andrew Truong — Project Gallery</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-soft: #15181f;
+    --card: #181b22;
+    --card-hover: #1d212a;
+    --line: #262b35;
+    --ink: #eef1f6;
+    --ink-soft: #aab2c0;
+    --ink-dim: #6f7889;
+    --accent: #7c8cff;
+    --accent-2: #54e6c1;
+    --radius: 16px;
+    --shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 30px -12px rgba(0,0,0,.55);
+    --maxw: 1120px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 500px at 85% -10%, rgba(124,140,255,.14), transparent 60%),
+      radial-gradient(700px 500px at 0% 0%, rgba(84,230,193,.08), transparent 55%),
+      var(--bg);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header / Hero ---------- */
+  header.site {
+    padding: 64px 0 28px;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink-dim); font-weight: 600;
+  }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 0 4px rgba(84,230,193,.15); }
+  h1 {
+    font-size: clamp(34px, 5.2vw, 56px);
+    line-height: 1.04;
+    letter-spacing: -.02em;
+    margin: 16px 0 14px;
+    font-weight: 800;
+  }
+  h1 .grad {
+    background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .lede {
+    max-width: 640px; color: var(--ink-soft); font-size: 18px; margin: 0;
+  }
+  .meta-row {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    border: 1px solid var(--line); background: var(--bg-soft);
+    color: var(--ink-soft); padding: 7px 13px; border-radius: 999px; font-size: 14px;
+  }
+  .pill svg { width: 15px; height: 15px; opacity: .9; }
+  .pill:hover { border-color: var(--accent); color: var(--ink); }
+
+  /* ---------- Filter bar ---------- */
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    margin-top: 38px;
+    padding: 14px 0;
+    background: linear-gradient(180deg, rgba(15,17,21,.92), rgba(15,17,21,.72));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .toolbar-inner { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid var(--line); background: var(--card);
+    color: var(--ink-soft); padding: 7px 14px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 600; cursor: pointer; transition: .18s ease;
+    font-family: inherit;
+  }
+  .chip:hover { color: var(--ink); border-color: #3a4150; }
+  .chip[aria-pressed="true"] {
+    color: #0f1115; background: linear-gradient(100deg, var(--accent), var(--accent-2));
+    border-color: transparent;
+  }
+  .count { margin-left: auto; color: var(--ink-dim); font-size: 13.5px; font-variant-numeric: tabular-nums; }
+
+  /* ---------- Grid ---------- */
+  .grid {
+    display: grid; gap: 22px; padding: 32px 0 80px;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  }
+
+  .card {
+    display: flex; flex-direction: column;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #353c4a; background: var(--card-hover); box-shadow: var(--shadow);
+  }
+
+  .thumb {
+    height: 176px; position: relative; display: grid; place-items: center;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .thumb img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    display: block;
+  }
+  .card:hover .thumb img { transform: scale(1.03); }
+  .thumb img { transition: transform .3s ease; }
+  .thumb .glyph {
+    font-size: 40px; font-weight: 800; letter-spacing: -.02em;
+    color: rgba(255,255,255,.92);
+    mix-blend-mode: overlay;
+  }
+  .thumb .emoji { font-size: 44px; filter: drop-shadow(0 4px 12px rgba(0,0,0,.35)); }
+  .status {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    font-size: 11.5px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase;
+    padding: 5px 9px; border-radius: 999px;
+    background: rgba(15,17,21,.72); backdrop-filter: blur(4px);
+    border: 1px solid rgba(255,255,255,.16); color: #fff;
+  }
+  .status.live { color: #fff; }
+  .status.live::before { content: "● "; color: #1fd17a; }
+  .status.wip { color: #fff; }
+  .status.wip::before { content: "● "; color: #ffcf5c; }
+
+  .body { padding: 18px 18px 16px; display: flex; flex-direction: column; gap: 11px; flex: 1; }
+  .card h3 { margin: 0; font-size: 19px; letter-spacing: -.01em; font-weight: 700; }
+  .blurb { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .tech {
+    font-size: 12px; font-weight: 600; color: var(--ink-soft);
+    border: 1px solid var(--line); background: var(--bg-soft);
+    padding: 4px 9px; border-radius: 7px;
+  }
+
+  .actions { display: flex; gap: 10px; margin-top: auto; padding-top: 6px; }
+  .btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 10px 12px; border-radius: 10px; font-size: 14px; font-weight: 650;
+    border: 1px solid var(--line); transition: .16s ease; cursor: pointer;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn.primary { background: linear-gradient(100deg, var(--accent), var(--accent-2)); color: #0f1115; border-color: transparent; }
+  .btn.primary:hover { filter: brightness(1.07); }
+  .btn.ghost { background: transparent; color: var(--ink-soft); }
+  .btn.ghost:hover { color: var(--ink); border-color: #3a4150; background: var(--bg-soft); }
+  .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+  .empty { text-align: center; color: var(--ink-dim); padding: 70px 0; grid-column: 1 / -1; }
+
+  footer.site {
+    border-top: 1px solid var(--line); padding: 28px 0 60px;
+    color: var(--ink-dim); font-size: 14px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto; }
+    .card:hover { transform: none; }
+    .card:hover .thumb img { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <span class="eyebrow"><span class="dot"></span> Project Gallery</span>
+      <h1>Things I've <span class="grad">designed &amp; shipped</span>.</h1>
+      <p class="lede">A living showcase of the products I build — what each one does in plain language, the stack behind it, and links to try it live or read the source.</p>
+      <div class="meta-row">
+        <a class="pill" href="mailto:andrew.truong.career@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          andrew.truong.career@gmail.com
+        </a>
+        <a class="pill" href="https://www.linkedin.com/in/andrew-truongg/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.25 8h4.5V24H.25V8zm7.5 0h4.31v2.18h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V24h-4.5v-7.4c0-1.76-.03-4.02-2.45-4.02-2.45 0-2.83 1.92-2.83 3.9V24h-4.5V8z"/></svg>
+          LinkedIn
+        </a>
+        <a class="pill" href="https://labs.gauntletai.com/andrewtruong" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.4 8.7 11.2H15.3L12 21.4ZM3.6 11.2 2.3 7.2c-.1-.4 0-.8.4-1l2.1 7H3.6Zm16.8 0h-1.2l2.1-7c.4.2.5.6.4 1l-1.3 4ZM8.7 11.2 7 5.9c-.1-.3.3-.6.6-.4l1.1 5.7H8.7Zm6.6 0 1.1-5.7c.3-.2.7.1.6.4l-1.7 5.3h-.0Z"/></svg>
+          GitLab
+        </a>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <div class="filters" id="filters" role="group" aria-label="Filter projects by technology"></div>
+        <span class="count" id="count"></span>
+      </div>
+    </div>
+
+    <main>
+      <section class="grid" id="grid" aria-live="polite"></section>
+    </main>
+
+    <footer class="site">
+      <span>© <span id="year"></span> Andrew Truong</span>
+      <span>Built as a self-contained page — edit the <code>projects</code> array to add your work.</span>
+    </footer>
+  </div>
+
+<script>
+/* ============================================================
+   EDIT HERE — add your projects.
+   Each project supports:
+   - name      : project title
+   - image     : path to a thumbnail screenshot (or "" to fall back to emoji/initial)
+   - emoji     : optional emoji shown on the thumbnail when there's no image
+   - accent    : two CSS colors for the fallback thumbnail gradient
+   - blurb     : NON-technical, one-or-two sentence overview
+   - tech      : array of tech-stack labels
+   - liveUrl   : deployed URL (omit or "" to disable the button)
+   - repoUrl   : GitLab repo URL (omit or "" to disable the button)
+   - status    : "live" | "wip"  (optional)
+   ============================================================ */
+const projects = [
+  {
+    name: "AgentForge",
+    image: "thumbs/agentforge.png",
+    accent: ["#7c8cff", "#54e6c1"],
+    blurb: "An automated security red-team for medical AI. Four AI agents work together to relentlessly attack a clinical assistant, judge what slips through, document each weakness, and re-check old fixes — surfacing real vulnerabilities before an attacker would.",
+    tech: ["Python", "FastAPI", "LangGraph", "Claude", "GPT-4o", "Postgres", "Redis", "Docker"],
+    liveUrl: "https://agentforge-production-790f.up.railway.app/dashboard",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/agentforge",
+    status: "live"
+  },
+  {
+    name: "Clinical Co-Pilot for OpenEMR",
+    image: "thumbs/openemr.png",
+    accent: ["#54a0ff", "#7c8cff"],
+    blurb: "An AI assistant built directly into a doctor's electronic health-record system. It answers questions about the patient in front of them in seconds, and cites every statement back to the real chart so it can't make things up.",
+    tech: ["PHP", "Python", "FastAPI", "LangGraph", "Claude", "FHIR", "Docker"],
+    liveUrl: "https://openemr-production-6c45.up.railway.app/",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/openemr",
+    status: "live"
+  },
+  {
+    name: "Opendoor Agent",
+    image: "thumbs/opendoor.png",
+    accent: ["#54e6c1", "#7c8cff"],
+    blurb: "An autonomous real-estate agent that carries a home buyer from their first message all the way to a structured offer — with fair-housing rules enforced automatically and a required human sign-off on anything legal or financial.",
+    tech: ["Python", "FastAPI", "React", "TypeScript", "Claude", "Docker"],
+    liveUrl: "https://opendoor-agent-production.up.railway.app/",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/opendoor-agent",
+    status: "live"
+  },
+  {
+    name: "Churn Intervention Agent",
+    image: "thumbs/churn.png",
+    accent: ["#ff7c9c", "#ffcf5c"],
+    blurb: "Finds the subscribers most likely to cancel and acts before they do — automatically sending personalized check-ins and retention offers, while escalating the highest-stakes accounts to a human for approval.",
+    tech: ["Python", "LightGBM", "Claude", "Snowflake", "Prefect", "FastAPI", "Docker"],
+    liveUrl: "https://retention-ops-console-production.up.railway.app/ui",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/churn-intervention-agent",
+    status: "live"
+  },
+  {
+    name: "Weekly Commit Module",
+    image: "thumbs/weekly-commit.png",
+    accent: ["#ffcf5c", "#54e6c1"],
+    blurb: "A planning tool that links each person's weekly commitments to the company's top-level goals. Employees plan, lock, and reconcile their week while managers see how everyone's work ladders up to the bigger strategy.",
+    tech: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],
+    liveUrl: "https://weekly-commit-production-6633.up.railway.app",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/st6-weekly-commit-module",
+    status: "live"
+  },
+  {
+    name: "Fruit Slayer — Fraction Dojo",
+    image: "thumbs/fruit-slayer.png",
+    accent: ["#ff9f43", "#ffcf5c"],
+    blurb: "A Fruit-Ninja-style math game that makes fractions click. Kids swipe to slice fruit while a friendly Sensei shows them why two quarter-pieces take up exactly the same space as one half.",
+    tech: ["React", "TypeScript", "Vite", "Tailwind", "Docker"],
+    liveUrl: "https://fruit-slayer-fraction-dojo-production.up.railway.app",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/clone-synthesis-tutor",
+    status: "live"
+  },
+  {
+    name: "Credal Onboarding Assistant",
+    image: "thumbs/onboarding.png",
+    accent: ["#7c8cff", "#54a0ff"],
+    blurb: "A polished, clickable walkthrough for setting up AI-agent governance: a guided seven-step flow where an admin sorts agent actions by risk, turns policy documents into rules, and configures human approvals.",
+    tech: ["React", "TypeScript", "Vite"],
+    liveUrl: "",
+    repoUrl: "https://labs.gauntletai.com/andrewtruong/onboarding-assistant"
+  }
+];
+
+/* ---------- Rendering ---------- */
+const grid = document.getElementById("grid");
+const filtersEl = document.getElementById("filters");
+const countEl = document.getElementById("count");
+let activeTech = "All";
+
+const linkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+const codeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>';
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function allTech() {
+  const set = new Set();
+  projects.forEach(p => (p.tech || []).forEach(t => set.add(t)));
+  return ["All", ...[...set].sort((a, b) => a.localeCompare(b))];
+}
+
+function renderFilters() {
+  filtersEl.innerHTML = "";
+  allTech().forEach(t => {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.textContent = t;
+    b.setAttribute("aria-pressed", String(t === activeTech));
+    b.addEventListener("click", () => { activeTech = t; renderFilters(); renderGrid(); });
+    filtersEl.appendChild(b);
+  });
+}
+
+function card(p) {
+  const initial = escapeHtml((p.name || "?").trim().charAt(0).toUpperCase());
+  const [c1, c2] = p.accent || ["#7c8cff", "#54e6c1"];
+  const thumbInner = p.image
+    ? `<img src="${escapeHtml(p.image)}" alt="${escapeHtml(p.name)} — screenshot" loading="lazy" />`
+    : p.emoji
+      ? `<span class="emoji" aria-hidden="true">${escapeHtml(p.emoji)}</span>`
+      : `<span class="glyph" aria-hidden="true">${initial}</span>`;
+  const statusBadge = p.status
+    ? `<span class="status ${p.status === "live" ? "live" : "wip"}">${p.status === "live" ? "Live" : "In progress"}</span>`
+    : "";
+  const stack = (p.tech || []).map(t => `<span class="tech">${escapeHtml(t)}</span>`).join("");
+
+  const live = p.liveUrl
+    ? `<a class="btn primary" href="${escapeHtml(p.liveUrl)}" target="_blank" rel="noopener">${linkIcon} Live demo</a>`
+    : `<span class="btn primary" aria-disabled="true">${linkIcon} No demo</span>`;
+  const repo = p.repoUrl
+    ? `<a class="btn ghost" href="${escapeHtml(p.repoUrl)}" target="_blank" rel="noopener">${codeIcon} Source</a>`
+    : `<span class="btn ghost" aria-disabled="true">${codeIcon} Private</span>`;
+
+  return `
+    <article class="card">
+      <div class="thumb" style="background:linear-gradient(135deg, ${escapeHtml(c1)}, ${escapeHtml(c2)})">
+        ${thumbInner}
+        ${statusBadge}
+      </div>
+      <div class="body">
+        <h3>${escapeHtml(p.name)}</h3>
+        <p class="blurb">${escapeHtml(p.blurb || "")}</p>
+        <div class="stack">${stack}</div>
+        <div class="actions">${live}${repo}</div>
+      </div>
+    </article>`;
+}
+
+function renderGrid() {
+  const list = activeTech === "All"
+    ? projects
+    : projects.filter(p => (p.tech || []).includes(activeTech));
+  grid.innerHTML = list.length
+    ? list.map(card).join("")
+    : `<p class="empty">No projects tagged “${escapeHtml(activeTech)}” yet.</p>`;
+  countEl.textContent = `${list.length} project${list.length === 1 ? "" : "s"}`;
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+renderFilters();
+renderGrid();
+</script>
+</body>
+</html>
