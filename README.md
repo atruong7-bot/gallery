@@ -41,7 +41,7 @@ Thumbnails in [`thumbs/`](thumbs/) are screenshots of each live deployment.
 | Project | Live | Source | Video |
 | --- | --- | --- | --- |
 | AgentForge — adversarial AI security platform | [demo](https://agentforge-production-790f.up.railway.app/dashboard) | [repo](https://labs.gauntletai.com/andrewtruong/agentforge) | [watch](https://www.youtube.com/watch?v=yinK_o8jUPw) |
-| Clinical Co-Pilot for OpenEMR | [demo](https://openemr-production-6c45.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/openemr) | — |
+| Clinical Co-Pilot for OpenEMR | [demo](https://openemr-production-6c45.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/openemr) | [watch](https://www.youtube.com/watch?v=t_hp9kVp6TU) |
 | Opendoor Agent — autonomous real-estate agent | [demo](https://opendoor-agent-production.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/opendoor-agent) | — |
 | Churn Intervention Agent | [demo](https://retention-ops-console-production.up.railway.app/ui) | [repo](https://labs.gauntletai.com/andrewtruong/churn-intervention-agent) | [watch](https://www.youtube.com/watch?v=QsVqO1Gj70I) |
 | Weekly Commit Module | [demo](https://weekly-commit-production-6633.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/st6-weekly-commit-module) | [watch](https://www.youtube.com/watch?v=PnRaKNVP8PA) |
