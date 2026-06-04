@@ -172,6 +172,10 @@
   .btn.ghost { background: transparent; color: var(--ink-soft); }
   .btn.ghost:hover { color: var(--ink); border-color: #3a4150; background: var(--bg-soft); }
   .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+  .btn.icon-only { flex: 0 0 auto; width: 44px; padding: 10px; }
+  .btn.icon-only svg { width: 18px; height: 18px; }
+  .btn.ghost.icon-only { color: #ff5c5c; }
+  .btn.ghost.icon-only:hover { color: #ff7a7a; border-color: rgba(255,92,92,.4); background: rgba(255,92,92,.08); }
 
   .empty { text-align: center; color: var(--ink-dim); padding: 70px 0; grid-column: 1 / -1; }
 
@@ -207,6 +211,10 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.4 8.7 11.2H15.3L12 21.4ZM3.6 11.2 2.3 7.2c-.1-.4 0-.8.4-1l2.1 7H3.6Zm16.8 0h-1.2l2.1-7c.4.2.5.6.4 1l-1.3 4ZM8.7 11.2 7 5.9c-.1-.3.3-.6.6-.4l1.1 5.7H8.7Zm6.6 0 1.1-5.7c.3-.2.7.1.6.4l-1.7 5.3h-.0Z"/></svg>
           GitLab
         </a>
+        <a class="pill" href="https://github.com/atruong7-bot" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.2 3.44 9.6 8.21 11.16.6.11.82-.25.82-.56 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.58-4.04-1.58-.55-1.37-1.34-1.74-1.34-1.74-1.09-.73.08-.72.08-.72 1.21.08 1.84 1.22 1.84 1.22 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.57-2.67-.3-5.47-1.31-5.47-5.83 0-1.29.47-2.34 1.24-3.17-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.21a11.6 11.6 0 0 1 3-.4c1.02 0 2.05.13 3 .4 2.28-1.53 3.29-1.21 3.29-1.21.66 1.66.25 2.88.12 3.18.77.83 1.24 1.88 1.24 3.17 0 4.53-2.81 5.53-5.49 5.82.43.36.81 1.09.81 2.2 0 1.59-.01 2.87-.01 3.26 0 .31.21.68.83.56A12.02 12.02 0 0 0 24 12.29C24 5.78 18.63.5 12 .5z"/></svg>
+          GitHub
+        </a>
       </div>
     </header>
 
@@ -239,6 +247,7 @@
    - tech      : array of tech-stack labels
    - liveUrl   : deployed URL (omit or "" to disable the button)
    - repoUrl   : GitLab repo URL (omit or "" to disable the button)
+   - videoUrl  : YouTube demo URL (omit or "" to hide the video button)
    - status    : "live" | "wip"  (optional)
    ============================================================ */
 const projects = [
@@ -250,6 +259,7 @@ const projects = [
     tech: ["Python", "FastAPI", "LangGraph", "Claude", "GPT-4o", "Postgres", "Redis", "Docker"],
     liveUrl: "https://agentforge-production-790f.up.railway.app/dashboard",
     repoUrl: "https://labs.gauntletai.com/andrewtruong/agentforge",
+    videoUrl: "https://www.youtube.com/watch?v=yinK_o8jUPw",
     status: "live"
   },
   {
@@ -280,6 +290,7 @@ const projects = [
     tech: ["Python", "LightGBM", "Claude", "Snowflake", "Prefect", "FastAPI", "Docker"],
     liveUrl: "https://retention-ops-console-production.up.railway.app/ui",
     repoUrl: "https://labs.gauntletai.com/andrewtruong/churn-intervention-agent",
+    videoUrl: "https://www.youtube.com/watch?v=QsVqO1Gj70I",
     status: "live"
   },
   {
@@ -290,6 +301,7 @@ const projects = [
     tech: ["Java", "Spring Boot", "React", "TypeScript", "PostgreSQL", "Docker"],
     liveUrl: "https://weekly-commit-production-6633.up.railway.app",
     repoUrl: "https://labs.gauntletai.com/andrewtruong/st6-weekly-commit-module",
+    videoUrl: "https://www.youtube.com/watch?v=PnRaKNVP8PA",
     status: "live"
   },
   {
@@ -321,6 +333,7 @@ let activeTech = "All";
 
 const linkIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
 const codeIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>';
+const ytIcon = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.5 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>';
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -363,6 +376,9 @@ function card(p) {
   const repo = p.repoUrl
     ? `<a class="btn ghost" href="${escapeHtml(p.repoUrl)}" target="_blank" rel="noopener">${codeIcon} Source</a>`
     : `<span class="btn ghost" aria-disabled="true">${codeIcon} Private</span>`;
+  const video = p.videoUrl
+    ? `<a class="btn ghost icon-only" href="${escapeHtml(p.videoUrl)}" target="_blank" rel="noopener" title="Watch demo video" aria-label="Watch ${escapeHtml(p.name)} demo video on YouTube">${ytIcon}</a>`
+    : "";
 
   return `
     <article class="card">
@@ -374,7 +390,7 @@ function card(p) {
         <h3>${escapeHtml(p.name)}</h3>
         <p class="blurb">${escapeHtml(p.blurb || "")}</p>
         <div class="stack">${stack}</div>
-        <div class="actions">${live}${repo}</div>
+        <div class="actions">${live}${repo}${video}</div>
       </div>
     </article>`;
 }

@@ -7,6 +7,7 @@ a link to the source.
 - **Email:** andrew.truong.career@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/andrew-truongg/
 - **GitLab:** https://labs.gauntletai.com/andrewtruong
+- **GitHub:** https://github.com/atruong7-bot
 
 ## Viewing it
 
@@ -37,12 +38,12 @@ Thumbnails in [`thumbs/`](thumbs/) are screenshots of each live deployment.
 
 ## Projects
 
-| Project | Live | Source |
-| --- | --- | --- |
-| AgentForge — adversarial AI security platform | [demo](https://agentforge-production-790f.up.railway.app/dashboard) | [repo](https://labs.gauntletai.com/andrewtruong/agentforge) |
-| Clinical Co-Pilot for OpenEMR | [demo](https://openemr-production-6c45.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/openemr) |
-| Opendoor Agent — autonomous real-estate agent | [demo](https://opendoor-agent-production.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/opendoor-agent) |
-| Churn Intervention Agent | [demo](https://retention-ops-console-production.up.railway.app/ui) | [repo](https://labs.gauntletai.com/andrewtruong/churn-intervention-agent) |
-| Weekly Commit Module | [demo](https://weekly-commit-production-6633.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/st6-weekly-commit-module) |
-| Fruit Slayer — Fraction Dojo | [demo](https://fruit-slayer-fraction-dojo-production.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/clone-synthesis-tutor) |
-| Credal Onboarding Assistant | — | [repo](https://labs.gauntletai.com/andrewtruong/onboarding-assistant) |
+| Project | Live | Source | Video |
+| --- | --- | --- | --- |
+| AgentForge — adversarial AI security platform | [demo](https://agentforge-production-790f.up.railway.app/dashboard) | [repo](https://labs.gauntletai.com/andrewtruong/agentforge) | [watch](https://www.youtube.com/watch?v=yinK_o8jUPw) |
+| Clinical Co-Pilot for OpenEMR | [demo](https://openemr-production-6c45.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/openemr) | — |
+| Opendoor Agent — autonomous real-estate agent | [demo](https://opendoor-agent-production.up.railway.app/) | [repo](https://labs.gauntletai.com/andrewtruong/opendoor-agent) | — |
+| Churn Intervention Agent | [demo](https://retention-ops-console-production.up.railway.app/ui) | [repo](https://labs.gauntletai.com/andrewtruong/churn-intervention-agent) | [watch](https://www.youtube.com/watch?v=QsVqO1Gj70I) |
+| Weekly Commit Module | [demo](https://weekly-commit-production-6633.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/st6-weekly-commit-module) | [watch](https://www.youtube.com/watch?v=PnRaKNVP8PA) |
+| Fruit Slayer — Fraction Dojo | [demo](https://fruit-slayer-fraction-dojo-production.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/clone-synthesis-tutor) | — |
+| Credal Onboarding Assistant | — | [repo](https://labs.gauntletai.com/andrewtruong/onboarding-assistant) | — |
