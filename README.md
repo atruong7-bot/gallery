@@ -46,4 +46,4 @@ Thumbnails in [`thumbs/`](thumbs/) are screenshots of each live deployment.
 | Churn Intervention Agent | [demo](https://retention-ops-console-production.up.railway.app/ui) | [repo](https://labs.gauntletai.com/andrewtruong/churn-intervention-agent) | [watch](https://www.youtube.com/watch?v=QsVqO1Gj70I) |
 | Weekly Commit Module | [demo](https://weekly-commit-production-6633.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/st6-weekly-commit-module) | [watch](https://www.youtube.com/watch?v=PnRaKNVP8PA) |
 | Fruit Slayer — Fraction Dojo | [demo](https://fruit-slayer-fraction-dojo-production.up.railway.app) | [repo](https://labs.gauntletai.com/andrewtruong/clone-synthesis-tutor) | — |
-| Credal Onboarding Assistant | — | [repo](https://labs.gauntletai.com/andrewtruong/onboarding-assistant) | — |
+| Credal Onboarding Assistant | [demo](https://credal-onboarding-frontend-xa2dq6pkeq-uc.a.run.app/) | [repo](https://labs.gauntletai.com/andrewtruong/onboarding-assistant) | — |
